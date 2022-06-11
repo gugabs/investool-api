@@ -7,13 +7,14 @@
     "paths": {
       "@/*": ["./src/*"],
       "@interfaces/*": ["./src/types/*"],
-      "@schemas/*": ["./src/schemas/*"],
       "@errors/*": ["./src/errors/*"],
+      "@schemas/*": ["./src/schemas/*"],
       "@config/*": ["./src/config/*"],
       "@routes/*": ["./src/routes/*"],
       "@middlewares/*": ["./src/middlewares/*"],
       "@controllers/*": ["./src/controllers/*"],
-      "@services/*": ["./src/services/*"]
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "esModuleInterop": true,
     "skipLibCheck": true,
