@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import authService from "@services/AuthService";
 
-import { NewUser } from "@interfaces/AuthTypes";
+import { NewUser, UserCredentials } from "@interfaces/AuthTypes";
 
 export default class AuthController {
   public static async signUp(req: Request, res: Response, next: NextFunction) {
@@ -25,8 +25,31 @@ export default class AuthController {
         createdAt,
       };
 
-      res.status(200).send(response);
+      return res.status(201).send(response);
     } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  public static async signIn(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, password } = req.body;
+
+      const userCredentials: UserCredentials = {
+        email,
+        password,
+      };
+
+      const sessionToken = await authService.signIn(userCredentials);
+
+      const response = {
+        token: sessionToken,
+      };
+
+      return res.status(200).send(response);
+    } catch (err) {
+      console.log(err);
       next(err);
     }
   }
