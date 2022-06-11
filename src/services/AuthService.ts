@@ -6,29 +6,26 @@ import { User } from "@prisma/client";
 
 import { NewUser } from "@interfaces/AuthTypes";
 
+import EmailConflictError from "@errors/EmailConflictError";
+
 export default class AuthService {
-  public static async signUp(newUser: NewUser): Promise<User | null> {
+  public static async signUp(newUser: NewUser): Promise<User> {
     const { email, password } = newUser;
 
-    try {
-      const userAlreadyExists = await prisma.user.findUnique({
-        where: {
-          email,
-        },
-      });
+    const userAlreadyExists = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
 
-      if (userAlreadyExists) return null;
+    if (userAlreadyExists) throw new EmailConflictError(email);
 
-      const passwordHash = bcrypt.hashSync(password, 10);
+    const passwordHash = bcrypt.hashSync(password, 10);
 
-      const user = await prisma.user.create({
-        data: { ...newUser, password: passwordHash },
-      });
+    const user = await prisma.user.create({
+      data: { ...newUser, password: passwordHash },
+    });
 
-      return user;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
+    return user;
   }
 }

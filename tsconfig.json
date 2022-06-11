@@ -7,6 +7,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@interfaces/*": ["./src/types/*"],
+      "@schemas/*": ["./src/schemas/*"],
+      "@errors/*": ["./src/errors/*"],
       "@config/*": ["./src/config/*"],
       "@routes/*": ["./src/routes/*"],
       "@middlewares/*": ["./src/middlewares/*"],
