@@ -3,6 +3,6 @@ export default class ActivationCodeNotFoundError extends Error {
     super();
 
     this.name = "ActivationCodeNotFoundError";
-    this.message = `Activation code doesn't exist`;
+    this.message = "Activation code doesn't exist";
   }
 }

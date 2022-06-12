@@ -3,6 +3,6 @@ export default class IncorrectCredentialsError extends Error {
     super();
 
     this.name = "IncorrectCredentialsError";
-    this.message = `Incorrect credentials`;
+    this.message = "Incorrect credentials";
   }
 }

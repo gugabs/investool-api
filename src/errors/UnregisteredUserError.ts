@@ -3,6 +3,6 @@ export default class UnregisteredUserError extends Error {
     super();
 
     this.name = "UnregisteredUserError";
-    this.message = `Unregistered user`;
+    this.message = "Unregistered user";
   }
 }

@@ -3,6 +3,6 @@ export default class InactiveUserError extends Error {
     super();
 
     this.name = "InactiveUserError";
-    this.message = `User isn't active`;
+    this.message = "User isn't active";
   }
 }

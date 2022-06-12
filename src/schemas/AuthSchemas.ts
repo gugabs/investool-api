@@ -16,3 +16,12 @@ export const signInSchema = joi.object({
 export const activateAccountSchema = joi.object({
   code: joi.string().required(), // need to add uuid pattern
 });
+
+export const requestPasswordResetSchema = joi.object({
+  email: joi.string().email().required(),
+});
+
+export const resetPasswordSchema = joi.object({
+  code: joi.string().required(),
+  newPassword: joi.string().min(6).max(256).required(),
+});

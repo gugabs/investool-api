@@ -73,4 +73,30 @@ export default class AuthController {
       next(err);
     }
   }
+
+  public static async requestPasswordReset(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body;
+
+      await authService.requestPasswordReset(email);
+
+      return res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  public static async resetPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { code, newPassword } = req.body;
+
+      await authService.resetPassword(code, newPassword);
+
+      return res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }
