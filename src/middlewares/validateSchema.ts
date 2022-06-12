@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import { ObjectSchema } from "joi";
 
-import { sendErrorResponse } from "@utils/messages";
+import { sendErrorResponse } from "@utils/httpResponses";
 
 export default function validateSchema(schema: ObjectSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -12,10 +12,7 @@ export default function validateSchema(schema: ObjectSchema) {
       return res
         .status(422)
         .send(
-          sendErrorResponse(
-            "ValidationError",
-            error.details.map((err) => err.message).toString()
-          )
+          sendErrorResponse("ValidationError", error.details.map((err) => err.message).toString())
         );
     }
 

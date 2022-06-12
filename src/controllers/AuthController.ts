@@ -53,4 +53,24 @@ export default class AuthController {
       next(err);
     }
   }
+
+  public static async activateAccount(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { code } = req.body;
+
+      const activatedUser = await authService.activateAccount(code);
+
+      const activatedAt = new Date().toISOString();
+
+      const response = {
+        email: activatedUser.email,
+        activatedAt,
+      };
+
+      return res.status(200).send(response);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }
