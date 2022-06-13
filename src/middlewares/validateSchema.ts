@@ -6,7 +6,7 @@ import { sendErrorResponse } from "@utils/httpResponses";
 
 export default function validateSchema(schema: ObjectSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.body);
+    const { error } = schema.validate(req);
 
     if (error) {
       return res

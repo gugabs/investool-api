@@ -56,7 +56,7 @@ export default class AuthController {
 
   public static async activateAccount(req: Request, res: Response, next: NextFunction) {
     try {
-      const { code } = req.body;
+      const { code } = req.params;
 
       const activatedUser = await authService.activateAccount(code);
 
@@ -89,7 +89,8 @@ export default class AuthController {
 
   public static async resetPassword(req: Request, res: Response, next: NextFunction) {
     try {
-      const { code, newPassword } = req.body;
+      const { code } = req.params;
+      const { newPassword } = req.body;
 
       await authService.resetPassword(code, newPassword);
 

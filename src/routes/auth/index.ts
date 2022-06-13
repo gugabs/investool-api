@@ -18,7 +18,7 @@ router.post("/sign-up", validateSchema(signUpSchema), AuthController.signUp);
 router.post("/sign-in", validateSchema(signInSchema), AuthController.signIn);
 
 router.post(
-  "/activate-account",
+  "/activate-account/:code",
   validateSchema(activateAccountSchema),
   AuthController.activateAccount
 );
@@ -29,6 +29,10 @@ router.post(
   AuthController.requestPasswordReset
 );
 
-router.post("/reset-password", validateSchema(resetPasswordSchema), AuthController.resetPassword);
+router.post(
+  "/reset-password/:code",
+  validateSchema(resetPasswordSchema),
+  AuthController.resetPassword
+);
 
 export default router;
