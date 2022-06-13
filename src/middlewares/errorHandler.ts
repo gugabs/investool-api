@@ -29,5 +29,8 @@ export default function errorHandler(
   if (err.name === "ResetPasswordCodeIsNotAvailableError")
     return res.status(422).send(sendErrorResponse(err.name, err.message));
 
+  if (err.name === "AlreadyHasAvailableCodeError")
+    return res.status(401).send(sendErrorResponse(err.name, err.message));
+
   return res.sendStatus(500);
 }

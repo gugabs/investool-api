@@ -18,6 +18,7 @@ import IncorrectCredentialsError from "@errors/IncorrectCredentialsError";
 import ActivationCodeNotFoundError from "@errors/ActivationCodeNotFoundError";
 import ResetPasswordCodeNotFoundError from "@errors/ResetPasswordCodeNotFoundError";
 import ResetPasswordCodeIsNotAvailableError from "@errors/ResetPasswordCodeIsNotAvailableError";
+import AlreadyHasAvailableCodeError from "@errors/AlreadyHasAvailableCodeError";
 
 import { sendActivationCode, sendResetPasswordSteps } from "@utils/emails";
 
@@ -104,9 +105,16 @@ export default class AuthService {
   public static async requestPasswordReset(email: string) {
     const user = await prisma.user.findUnique({
       where: { email },
+      include: {
+        ResetPasswordCodes: true,
+      },
     });
 
     if (!user) throw new UnregisteredUserError();
+
+    const alreadyHasAvailableCode = user.ResetPasswordCodes.some((code) => code.isAvailable);
+
+    if (alreadyHasAvailableCode) throw new AlreadyHasAvailableCodeError();
 
     const resetPasswordCode = uuid();
     const expireAt = add(new Date(), { minutes: 30 });
