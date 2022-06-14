@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
+import { formatInTimeZone } from "date-fns-tz";
+
 import authService from "@services/AuthService";
 
 import { NewUser, UserCredentials } from "@interfaces/AuthTypes";
@@ -18,7 +20,7 @@ export default class AuthController {
 
       const createdUser = await authService.signUp(newUser);
 
-      const createdAt = new Date().toISOString();
+      const createdAt = formatInTimeZone(new Date(), process.env.TZ!, "yyyy-MM-dd HH:mm:ssXXX");
 
       const response = {
         email: createdUser.email,
@@ -60,7 +62,7 @@ export default class AuthController {
 
       const activatedUser = await authService.activateAccount(code);
 
-      const activatedAt = new Date().toISOString();
+      const activatedAt = formatInTimeZone(new Date(), process.env.TZ!, "yyyy-MM-dd HH:mm:ssXXX");
 
       const response = {
         email: activatedUser.email,

@@ -23,14 +23,14 @@ model User {
 
 model ActivationCode {
   code      String   @id
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @db.Timestamptz()
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
 }
 
 model ResetPasswordCode {
   code        String   @id
-  expireAt    DateTime
+  expireAt    DateTime @db.Timestamptz()
   isAvailable Boolean  @default(true)
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
