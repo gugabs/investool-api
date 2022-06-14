@@ -29,7 +29,6 @@ export default class AuthController {
 
       return res.status(201).send(response);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
@@ -51,7 +50,6 @@ export default class AuthController {
 
       return res.status(200).send(response);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
@@ -71,7 +69,6 @@ export default class AuthController {
 
       return res.status(200).send(response);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
@@ -84,7 +81,6 @@ export default class AuthController {
 
       return res.sendStatus(200);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
@@ -98,7 +94,6 @@ export default class AuthController {
 
       return res.sendStatus(200);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }

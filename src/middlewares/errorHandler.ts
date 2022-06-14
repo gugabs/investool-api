@@ -8,6 +8,8 @@ export default function errorHandler(
   res: Response,
   _next: NextFunction
 ) {
+  console.log(err);
+
   if (err.name === "EmailConflictError")
     return res.status(409).send(sendErrorResponse(err.name, err.message));
 
