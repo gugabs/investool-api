@@ -32,7 +32,7 @@ export default class AuthService {
       },
     });
 
-    if (userAlreadyExists) throw new EmailConflictError(email);
+    if (userAlreadyExists) throw new EmailConflictError();
 
     const passwordHash = bcrypt.hashSync(password, 10);
 

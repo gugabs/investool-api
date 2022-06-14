@@ -1,8 +1,9 @@
-export default class ActivationCodeNotFoundError extends Error {
-  constructor() {
-    super();
+import { ApplicationError } from "@interfaces/ErrorTypes";
 
-    this.name = "ActivationCodeNotFoundError";
-    this.message = "Activation code doesn't exist";
-  }
+import httpStatus from "http-status-codes";
+
+export default class ActivationCodeNotFoundError implements ApplicationError {
+  status = httpStatus.NOT_FOUND;
+  name = "ActivationCodeNotFoundError";
+  message = "Activation code doesn't exist";
 }

@@ -1,8 +1,9 @@
-export default class AlreadyHasAvailableCodeError extends Error {
-  constructor() {
-    super();
+import { ApplicationError } from "@interfaces/ErrorTypes";
 
-    this.name = "AlreadyHasAvailableCodeError";
-    this.message = "You already have an available code to use";
-  }
+import httpStatus from "http-status-codes";
+
+export default class AlreadyHasAvailableCodeError implements ApplicationError {
+  status = httpStatus.UNAUTHORIZED;
+  name = "AlreadyHasAvailableCodeError";
+  message = "You already have an available code to use";
 }

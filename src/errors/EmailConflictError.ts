@@ -1,8 +1,9 @@
-export default class EmailConflictError extends Error {
-  constructor(email: string) {
-    super();
+import { ApplicationError } from "@interfaces/ErrorTypes";
 
-    this.name = "EmailConflictError";
-    this.message = `${email} already is registered`;
-  }
+import httpStatus from "http-status-codes";
+
+export default class EmailConflictError implements ApplicationError {
+  status = httpStatus.CONFLICT;
+  name = "EmailConflictError";
+  message = `User already is registered`;
 }
