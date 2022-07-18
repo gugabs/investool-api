@@ -16,8 +16,10 @@
       "@services/*": ["./src/services/*"],
       "@utils/*": ["./src/utils/*"]
     },
+    "outDir": "dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "plugins": [{ "transform": "typescript-transform-paths" }]
   }
 }
